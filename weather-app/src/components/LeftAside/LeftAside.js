@@ -1,34 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-const LeftAside = ({ toggle, setToggle }) => {
-    const buttonHandler = () => {
-        setToggle(!toggle);
-    };
+import WeatherDataContext from '../../contexts/WeatherDataContext';
+
+import Today from '../Today/Today';
+import Search from '../Search/Search';
+
+const LeftAside = () => {
+
+    const { getWeather, getCity } = useContext(WeatherDataContext);
+
+    console.log(getWeather)
+
+    if (getWeather.length === 0) {
+        return (<h1>Loading...</h1>);
+    }
 
     return (
-        <div className={toggle ? 'hidden' : ''}>
-            <div className='flex-col'>
-                <div className='flex'>
-                    <button className='bg-light-gray text-white mt-10 ml-10 rounded-md p-3 outline-none' onClick={buttonHandler}>Enter a city name</button>
-                </div>
-                <div className='flex flex-col justify-start items-center h-full'>
-                    <img src='http://openweathermap.org/img/wn/10d@4x.png' alt='' />
-                    <p>
-                        <span className='font-extrabold text-white text-7xl'>26</span>
-                        <span className='text-gray-400 text-3xl'>°C</span>
-                    </p>
-                    <p className='text-gray-50 font-bold mt-5 text-3xl'>Clear</p>
-                    <p className='text-gray-50 font-bold mt-5 text-2xl'>Today</p>
-
-                    <div className='flex justify-center items-center'>
-                        <p className='text-gray-400 font-bold text-2xl mt-5'>
-                            <i className='material-icons'>location_on</i>London
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <>
+            <Today current={getWeather[0]} city={getCity.name} />
+            <Search />
+        </>
     )
-};
+}
 
 export default LeftAside;

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const WindCard = () => {
+const WindCard = ({ windSpeed }) => {
     return (
         <div className='bg-blue-lighter rounded-lg px-auto py-8'>
             <div className='flex-col'>
                 <p className='text-center text-gray-300'>Wind Status</p>
                 <div className='flex justify-center items-center'>
                     <span className='text-5xl font-bold'>
-                        5 km/h
+                        {windSpeed} km/h
                     </span>
                 </div>
 

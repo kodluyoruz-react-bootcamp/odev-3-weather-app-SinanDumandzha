@@ -1,17 +1,17 @@
 import React from 'react';
 
-const Card = () => {
+const Card = ({ daily }) => {
     return (
         <div className='bg-blue-lighter p-6 rounded-lg'>
             <div className='flex-col'>
-                <p className='text-center'>15.01.2021</p>
+                <p className='text-center'>{daily.day}</p>
                 <div className='flex justify-center items-center'>
-                    <img src='http://openweathermap.org/img/wn/10d@2x.png' alt=''></img>
+                    <img src={`http://openweathermap.org/img/wn/${daily.icon}@2x.png`} alt='weather icon'></img>
                 </div>
             </div>
-            <div className='flex justify-between'>
-                <span>22°C</span>
-                <span>26°C</span>
+            <div className='justify-items-center flex space-y-6'>
+                <span>{daily.min}°C</span>
+                <span>{daily.max}°C</span>
             </div>
         </div>
     )
